@@ -514,7 +514,7 @@ Respond ONLY with valid JSON. No markdown. No extra text. No explanation outside
 
       try {
         const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -531,9 +531,9 @@ Respond ONLY with valid JSON. No markdown. No extra text. No explanation outside
 
         document.getElementById('nicheText').textContent = report.niche;
         document.getElementById('painText').textContent = report.pain;
-        document.getElementById('competitorText').textContent = report.competitors;
+        document.getElementById('competitorText').textContent = typeof report.competitors === 'object' ? JSON.stringify(report.competitors, null, 2) : report.competitors;
         document.getElementById('opportunityText').textContent = report.opportunity;
-        document.getElementById('revenueText').textContent = report.revenue;
+        document.getElementById('revenueText').textContent = typeof report.revenue === 'object' ? JSON.stringify(report.revenue, null, 2) : report.revenue;
 
         const c = report.confidence;
         const badgeClass = v => v === 'High' ? 'badge-high' : v === 'Medium' ? 'badge-medium' : 'badge-low';
